@@ -1,18 +1,19 @@
 import React from "react";
-import { Text } from "../../../components/typography/text.component";
 import { SvgXml } from "react-native-svg";
 
 import { Spacer } from "../../../components/spacer/spacer.component";
+import { Text } from "../../../components/typography/text.component";
 import star from "../../../../assets/star";
 import open from "../../../../assets/open";
+
 import {
   RestaurantCard,
-  Icon,
   RestaurantCardCover,
   Info,
   Section,
   SectionEnd,
   Rating,
+  Icon,
   Address,
 } from "./restaurant-info-card.styles";
 
@@ -24,6 +25,7 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
       "https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg",
     ],
     address = "100 some random street",
+    placeId,
     isOpenNow = true,
     rating = 4,
     isClosedTemporarily = true,
@@ -38,18 +40,23 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
         <Text variant="label">{name}</Text>
         <Section>
           <Rating>
-            {ratingArray.map(() => (
-              <SvgXml xml={star} width={20} height={20} />
+            {ratingArray.map((_, i) => (
+              <SvgXml
+                key={`${placeId} ${i}`}
+                xml={star}
+                width={20}
+                height={20}
+              />
             ))}
           </Rating>
           <SectionEnd>
             {isClosedTemporarily && (
               <Text variant="error">CLOSED TEMPORARILY</Text>
             )}
-            <Spacer position="left" size="medium">
+            <Spacer position="left" size="large">
               {isOpenNow && <SvgXml xml={open} width={20} height={20} />}
             </Spacer>
-            <Spacer position="left" size="medium">
+            <Spacer position="left" size="large">
               <Icon source={{ uri: icon }} />
             </Spacer>
           </SectionEnd>
