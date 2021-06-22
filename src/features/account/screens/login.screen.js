@@ -7,11 +7,12 @@ import {
   AccountContainer,
   AuthButton,
   LoginInput,
+  ErrorContainer,
 } from "../components/account.styles";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { Text } from "../../../components/typography/text.component";
 
-export const LoginScreen = () => {
+export const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -38,15 +39,14 @@ export const LoginScreen = () => {
               label="Password"
               textContentType="password"
               autoCapitalize="none"
-              secure
               secureTextEntry
             />
           </Spacer>
 
           {error && (
-            <Spacer>
+            <ErrorContainer>
               <Text variant="error">{error}</Text>
-            </Spacer>
+            </ErrorContainer>
           )}
 
           <Spacer position="top" size="large">
@@ -59,6 +59,11 @@ export const LoginScreen = () => {
             </AuthButton>
           </Spacer>
         </AccountContainer>
+        <Spacer position="top" size="large">
+          <AuthButton mode="contained" onPress={() => navigation.goBack()}>
+            Back
+          </AuthButton>
+        </Spacer>
       </AccountBackground>
     </>
   );

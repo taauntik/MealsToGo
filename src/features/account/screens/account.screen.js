@@ -7,6 +7,7 @@ import {
   AccountCover,
   AccountContainer,
   AuthButton,
+  Title,
 } from "../components/account.styles";
 
 export const AccountScreen = ({ navigation }) => {
@@ -14,6 +15,7 @@ export const AccountScreen = ({ navigation }) => {
     <>
       <AccountBackground>
         <AccountCover />
+        <Title>Meals To Go</Title>
         <AccountContainer>
           <AuthButton
             icon="lock-open-outline"
@@ -24,7 +26,7 @@ export const AccountScreen = ({ navigation }) => {
           </AuthButton>
           <Spacer size="large" position="top">
             <AuthButton
-              icon="lock-open-outline"
+              icon="email"
               mode="contained"
               onPress={() => navigation.navigate("Register")}
             >
